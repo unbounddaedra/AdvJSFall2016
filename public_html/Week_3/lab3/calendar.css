@@ -9,6 +9,15 @@
 input[type=button] {width: 200px; height: 40px;}
 
 .footer-btn {
-    clear: both; 
+    clear: both;
     margin-top:20px; margin-left:400px; height:150px; border: 1px red; width: 500px;
+}
+
+.available {
+  background: green;
+  color: white;
+}
+
+.unavailable {
+  background: red;
 }

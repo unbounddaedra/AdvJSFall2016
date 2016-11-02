@@ -20,11 +20,28 @@ function strUpper(str) {
 }
 */
 
-function changeConvert(money)
+function changeConvert(str)
 {
-    if ( typeof money !== 'string' ) return money;
-    var moneySlice = money.split(".");
-    var dollar = moneySlice[0]; 
+    if ( typeof str !== 'string' ) return str;
+    var moneySlice = str.split(".");
+    var dollar = moneySlice[0];
+    if ((dollar[0] === "0") && (dollar.length === 2 ))
+    {
+        dollar = dollar.substring(1)
+    }
+   
     return dollar;
-    
+}
+
+function changeConvertRedemption(str)
+{
+    if ( typeof str !== 'string' ) return str;
+    var moneySlice = str.split(".");
+    var dollar = moneySlice[1];
+    if ((dollar[0] === "0") && (dollar.length === 2 ))
+    {
+        dollar = dollar.substring(1)
+    }
+   
+    return dollar;
 }

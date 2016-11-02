@@ -51,6 +51,18 @@ describe("changeConvert", function()
 {
     it("should convert a change value into the dollar value", function()
     {
-        expect (  )
-    }
-}
+        expect( changeConvert("10.03") ).toBe("10");
+        expect( changeConvert("0.03") ).toBe("0");
+        expect( changeConvert("01.3") ).toBe("1");
+    });
+});
+
+describe("changeConvertRedemption", function()
+{
+    it("should convert a change value into the dollar value", function()
+    {
+        expect( changeConvert("10.03") ).toBe("03");
+        expect( changeConvert("0.03") ).toBe("03");
+        expect( changeConvert("01.3") ).toBe("30");
+    });
+});

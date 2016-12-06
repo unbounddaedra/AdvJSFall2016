@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>William Button IV Lab 8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="race" width="750" height="150"></canvas>
+        <br />
+        <button class="toggle" id="play">Play</button>
+        <script type ="text/javascript">
+
+            var can = document.querySelector('#race');
+            var ctx = can.getContext('2d');
+            var redSquare = 0;
+            var blueSquare = 0;
+            var finishline = 675;
+            var play = document.querySelector('#play');
+            
+            function ClearCanvas()
+            {
+                window.ctx.clearRect(0, 0, window.can.width, window.can.height); // x y / w h
+            }
+            // this function creates the finish line
+            function Line() 
+            {
+                window.ctx.beginPath();
+                window.ctx.moveTo(675, 0); //x, y
+                window.ctx.lineTo(675, window.can.height);
+                window.ctx.stroke();
+            }
+            // this function creates the blue box
+            function Blue() 
+            {
+                /* this colors the entire box */
+                window.ctx.fillStyle = "blue";
+                window.ctx.fillRect(window.blueSquare, 90, 100, 40); // x, y, width, height
+            }
+             // this functuon creates the red box
+            function Red() 
+            {
+                /* this colors the entire box */
+                window.ctx.fillStyle = "red";
+                window.ctx.fillRect(window.redSquare, 25, 100, 40); // x, y, width, height
+            }
+            function move()
+            {
+               if ((window.redSquare + 100) < window.finishline && (window.blueSquare + 100) < window.finishline)  {
+               window.redSquare += randNum(15);
+               window.blueSquare += randNum(15);
+               ClearCanvas();
+               Line();
+               Blue();
+               Red();
+               setTimeout(window.move, 30);
+               window.play.style.display = 'none';  
+           }
+           else
+           {
+               if ((window.redSquare + 100) >= window.finishline)
+               {
+                   textRed();
+                  
+               }
+               if ((window.blueSquare + 100) >= window.finishline)
+               {
+                   textBlue();
+                   
+               }
+               
+               reset();
+           }
+           
+       }
+       function textBlue()
+       {
+                window.ctx.fillStyle = "blue";
+                window.ctx.font = "75pt Comic Sans MS";
+                window.ctx.fillText("Blue Wins", (window.can.width / 4) - 100, window.can.height / 2); //x,y
+            }
+            function textRed()
+            {
+                window.ctx.fillStyle = "red";
+                window.ctx.font = "75pt Comic Sans MS";
+                window.ctx.fillText("Red Wins", (window.can.width / 4) - 100, window.can.height / 2); //x,y
+            }
+             function reset() 
+             {
+               window.redSquare = 0;
+               window.blueSquare = 0;
+               window.play.style.display = 'block';  
+            }
+            play.addEventListener('click', move);
+            // given function to create a random number for the square to move
+            function randNum(max)
+            {
+                return Math.ceil(Math.random() * max) + 1;
+            }
+        </script>
+    </body>
+</html>
